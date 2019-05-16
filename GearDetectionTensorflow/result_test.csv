@@ -1,0 +1,18 @@
+,image name,actual,predicted
+0,defect-34.bmp,dog,dog
+1,defect-22.bmp,dog,dog
+2,non_defect-28.bmp,cat,dog
+3,non_defect-31.bmp,cat,cat
+4,defect-15.bmp,dog,dog
+5,non_defect-7.bmp,cat,cat
+6,non_defect-33.bmp,cat,cat
+7,non_defect-9.bmp,cat,cat
+8,non_defect-13.bmp,cat,cat
+9,defect-0.bmp,dog,dog
+10,non_defect-5.bmp,cat,cat
+11,non_defect-21.bmp,cat,cat
+12,non_defect-30.bmp,cat,cat
+13,defect-16.bmp,dog,dog
+14,defect-3.bmp,dog,dog
+15,non_defect-14.bmp,cat,cat
+16,non_defect-11.bmp,cat,cat
