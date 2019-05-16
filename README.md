@@ -1,10 +1,10 @@
 # Gear Classification Using CNN Tensorflow
 
 ### data
-![alt text](gear_data.gif)
+![alt text](gear_data.png)
 
 ### model
-![alt text](architecture.gif)
+![alt text](architecture.png)
 
 
 dataSet for data (images) loading and labelling
