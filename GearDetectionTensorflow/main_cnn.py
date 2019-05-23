@@ -13,6 +13,8 @@ from sklearn.metrics import roc_curve
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import accuracy_score
 
+## author: Imam Mustafa Kamal
+## email: imamkamal52@gmail.com
 
 def new_weights(shape):
     return tf.Variable(tf.truncated_normal(shape, stddev=0.05))
@@ -76,7 +78,7 @@ def print_progress(epoch, feed_dict_train):
     msg = "Epoch {0} --- Training Accuracy: {1:>6.1%}"
     print(msg.format(epoch + 1, acc))
 
-def optimize(num_iterations):
+def optimize(train_batch_size, num_iterations):
     # Ensure we update the global variable rather than a local copy.
     global total_iterations
 
@@ -119,8 +121,8 @@ def summary_result(data_act, data_pred):
     cm = confusion_matrix(data_act, data_pred)
     plt.clf()
     plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Wistia)
-    classNames = ['Dog', 'Cat']
-    plt.title('Confusion Matrix of Dog and Cat Classification')
+    classNames = ['Defect', 'Non-Defect']
+    plt.title('Confusion Matrix of Defect and Non-defect Classification')
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
     tick_marks = np.arange(len(classNames))
@@ -156,10 +158,10 @@ def write_predictions(data):
 
     data_id_test = pd.DataFrame(data.test.ids, columns=['image name'])
     data_labels_test = pd.DataFrame(data.test.labels, columns=['actual', 'actual_label'])
-    data_class_predict = pd.DataFrame(preds, columns=['dog', 'cat'])
+    data_class_predict = pd.DataFrame(preds, columns=['defect', 'non-defect'])
 
-    data_act = np.where(data_labels_test['actual_label'] == 1, 'cat', 'dog')
-    data_pred = np.where(data_class_predict['cat']>= 0.5, 'cat', 'dog')
+    data_act = np.where(data_labels_test['actual_label'] == 1, 'non-defect', 'defect')
+    data_pred = np.where(data_class_predict['non-defect']>= 0.5, 'non-defect', 'defect')
 
     df_data_act = pd.DataFrame(data_act, columns=['actual'])
     df_data_pred = pd.DataFrame(data_pred, columns=['predicted'])
@@ -169,7 +171,8 @@ def write_predictions(data):
     df_result_test = pd.DataFrame(result_test)
     df_result_test.to_csv("result_test.csv")
 
-    data_labels_pred = np.where(data_class_predict['cat'] >= 0.5, 1, 0)
+    data_labels_pred = np.where(data_class_predict['non-defect'] >= 0.5, 1, 0)
+
     summary_result(data_labels_test['actual_label'], data_labels_pred)
 
 if __name__=='__main__':
@@ -285,6 +288,6 @@ if __name__=='__main__':
     train_batch_size = batch_size
 
     total_iterations = 0
-    optimize(num_iterations=5000)  # We performed 1000 iterations above.
+    optimize(train_batch_size, num_iterations=100)  # We performed 1000 iterations above.
 
     write_predictions(data)

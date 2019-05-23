@@ -4,6 +4,9 @@ import numpy as np
 import time
 import os
 
+## author: Imam Mustafa Kamal
+## email: imamkamal52@gmail.com
+
 def rescale_img(image):
     # we need to keep in mind aspect ratio so the image does
     # not look skewed or distorted -- therefore, we calculate
